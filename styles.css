@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd6e8 0%, #ffb3d1 50%, #ff8fb8 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #4a1a2c;
+  position: relative;
+}
+
+/* -------- CORAZONES FLOTANTES -------- */
+.corazones {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.corazon-flotante {
+  position: absolute;
+  font-size: 24px;
+  animation: subir linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* -------- ESTRELLAS -------- */
+.estrellas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.estrella {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: white;
+  border-radius: 50%;
+  animation: brillar 2s ease-in-out infinite;
+  box-shadow: 0 0 10px white;
+}
+
+@keyframes brillar {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* -------- PANTALLA INICIO -------- */
+.inicio {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff8fb8, #ff5c8a);
+  z-index: 100;
+  transition: opacity 1s, transform 1s;
+  text-align: center;
+  padding: 20px;
+}
+
+.inicio.oculto {
+  opacity: 0;
+  transform: scale(1.2);
+  pointer-events: none;
+}
+
+.titulo-inicio {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: white;
+  text-shadow: 0 0 20px rgba(255,255,255,0.8);
+  animation: latido 1.5s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.subtitulo-inicio {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.boton-abrir {
+  background: white;
+  color: #ff5c8a;
+  border: none;
+  padding: 18px 50px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+  animation: flotar 2s ease-in-out infinite;
+}
+
+.boton-abrir:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* -------- CONTENEDOR PRINCIPAL -------- */
+.contenedor {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  opacity: 0;
+  transition: opacity 1s 0.5s;
+}
+
+.contenedor.visible {
+  opacity: 1;
+}
+
+/* -------- HERO -------- */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  margin-bottom: 40px;
+}
+
+.nombre {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(4rem, 12vw, 9rem);
+  color: white;
+  text-shadow: 
+    0 0 20px rgba(255, 92, 138, 0.8),
+    0 0 40px rgba(255, 92, 138, 0.5),
+    0 5px 15px rgba(0,0,0,0.2);
+  animation: latido 2s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+.frase {
+  font-size: 1.3rem;
+  color: #7a1f3d;
+  font-weight: 400;
+  letter-spacing: 1px;
+  animation: aparecer 2s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------- CARTA -------- */
+.carta {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 50px 40px;
+  margin: 40px 0;
+  box-shadow: 0 20px 60px rgba(255, 92, 138, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  animation: aparecer 1.5s ease-out;
+}
+
+.carta-contenido h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: #ff5c8a;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.carta-contenido p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  color: #4a1a2c;
+  text-align: justify;
+}
+
+.carta-contenido strong {
+  color: #ff5c8a;
+  font-weight: 600;
+}
+
+.firma {
+  text-align: right !important;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem !important;
+  color: #ff5c8a !important;
+  margin-top: 30px !important;
+}
+
+/* -------- RAZONES -------- */
+.razones {
+  margin: 60px 0;
+}
+
+.razones h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+.grid-razones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px 25px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #7a1f3d;
+  box-shadow: 0 10px 30px rgba(255, 92, 138, 0.25);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.tarjeta:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(255, 92, 138, 0.4);
+  border-color: #ff5c8a;
+  background: white;
+}
+
+/* -------- BOTÓN FINAL -------- */
+.boton-final {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.boton-amor {
+  background: linear-gradient(135deg, #ff5c8a, #ff8fb8);
+  color: white;
+  border: none;
+  padding: 20px 60px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 15px 40px rgba(255, 92, 138, 0.5);
+  transition: all 0.3s;
+  animation: latido 2s ease-in-out infinite;
+}
+
+.boton-amor:hover {
+  transform: scale(1.1);
+  box-shadow: 0 20px 50px rgba(255, 92, 138, 0.7);
+}
+
+/* -------- FOOTER -------- */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* -------- LLUVIA DE CORAZONES -------- */
+.corazon-lluvia {
+  position: fixed;
+  font-size: 40px;
+  z-index: 999;
+  pointer-events: none;
+  animation: caer 3s ease-in forwards;
+}
+
+@keyframes caer {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+.corazon-lluvia {
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
